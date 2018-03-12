@@ -30,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/*").hasAnyRole("ADMIN", "USER")
-				.antMatchers(HttpMethod.DELETE, "/user/*").hasAnyRole("ADMIN").antMatchers(HttpMethod.POST, "/user/*")
-				.hasAnyRole("ADMIN").antMatchers(HttpMethod.PUT, "/user/*").hasAnyRole("ADMIN")
-				.antMatchers(HttpMethod.GET, "/user/*").hasAnyRole("ADMIN", "USER").and().httpBasic()
+		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.DELETE, "/user/*").hasAnyRole("ADMIN")
+				.antMatchers(HttpMethod.POST, "/user/**").hasAnyRole("ADMIN").antMatchers(HttpMethod.PUT, "/user/*")
+				.hasAnyRole("ADMIN").antMatchers(HttpMethod.GET, "/user/*").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/*").hasAnyRole("ADMIN", "USER").and().httpBasic()
 				.realmName("Topic security application Realm").authenticationEntryPoint(authenticationEntryPoint);
 	}
 
