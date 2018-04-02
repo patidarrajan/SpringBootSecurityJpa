@@ -1,0 +1,8 @@
+<div  class="col-lg-12 center-block">
+  <input type="radio" name="userCountRadio" value="All" [(ngModel)]="selectedUserCountRadioOption" (change)="onChangeListenerRadioOption()"
+  />All ({{all}})
+  <input type="radio" name="userCountRadio" value="ROLE_ADMIN" [(ngModel)]="selectedUserCountRadioOption" (change)="onChangeListenerRadioOption()"
+  />Admin ({{admin}})
+  <input type="radio" name="userCountRadio" value="ROLE_USER" [(ngModel)]="selectedUserCountRadioOption" (change)="onChangeListenerRadioOption()"
+  />User ({{user}})
+</div>

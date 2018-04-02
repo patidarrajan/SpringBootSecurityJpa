@@ -1,0 +1,43 @@
+<div>
+  <span>Search: </span>
+  <input class="form-control" type="text" [(ngModel)]='searchText'>
+</div>
+<div>
+  You searched for {{searchText}}.
+</div>
+<br/>
+<br/>
+<div>
+  <app-user-count *ngIf='userList' [all]="getTotalUserCount()" [admin]="getAdminUserCount()" [user]="getNormalUserCount()" (countRadioButtonChanged)="changeListAsPerSelectedUserTypeRadioOption($event)"></app-user-count>
+</div>
+<br/>
+<br/>
+<div class="table-responsive col-lg-12">
+  <table  class="table">
+      <tr>
+          <th>Id</th>
+          <th>User Name</th>
+          <th>Role</th>
+          <th>Full Name</th>
+          <th>Country</th>
+          <th>State</th>
+          <th>Edit</th>
+      </tr>
+      <ng-container *ngFor="let user of userList">
+          <tr *ngIf="(selectedUserTypeRadioOption=='All' || selectedUserTypeRadioOption===user.role) && user.userName.includes(searchText)">
+              <td>{{user.id}}</td>
+              <td>{{user.userName | uppercase}}</td>
+              <td>{{user.role}}</td>
+              <td>{{user.fullName | uppercase}}</td>
+              <td>{{user.country | uppercase}}</td>
+              <td>{{user.enabled==1 ? 'Enabled':'Disabled'}}</td>
+              <td><a class="active" [routerLink]="['/update-user',user.id]"><span class="btn btn-success">Edit</span></a></td>
+          </tr>
+      </ng-container>
+      <tr *ngIf="!userList || userList.length==0 ">
+          <td colspan="6">
+              {{statusMessage}}
+          </td>
+      </tr>
+  </table>
+</div>

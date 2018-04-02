@@ -1,0 +1,43 @@
+<br/>
+<div class="table-responsive col-lg-12">
+    <div *ngIf="user" class="table-responsive col-lg-5">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <td>{{user.id}}</td>
+            </tr>
+            <tr>
+                <th>User Name</th>
+                <td>{{user.userName}}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{user.role}}</td>
+            </tr>
+            <tr *ngIf='isShowAllInfo'>
+                <th>Full Name</th>
+                <td>{{user.fullName}}</td>
+            </tr>
+            <tr *ngIf='isShowAllInfo'>
+                <th>Country</th>
+                <td>{{user.country}}</td>
+            </tr>
+            <tr *ngIf='isShowAllInfo'>
+                <th>Enabled</th>
+                <td>{{user.enabled}}</td>
+            </tr>
+        </table>
+        <div class="table-responsive col-lg-12">
+            <button (click)="toggleShowDetails()" class="btn btn-default center-block">{{!isShowAllInfo ? 'Show' : 'Hide'}} more details</button>
+        </div>
+    </div>
+    <div *ngIf="!user && !statusMessage">
+        Loading Data...
+    </div>
+    <div *ngIf="!user && statusMessage">
+        {{statusMessage}}
+    </div>
+    <div  class="col-lg-12">
+        <button class="btn btn-info" (click)="onBackBtnClick()">Back</button>
+    </div>
+</div>

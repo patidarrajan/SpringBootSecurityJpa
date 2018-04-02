@@ -1,0 +1,39 @@
+<div class="center-block">
+  <h3 class="text-info text-center">{{(isUpdate ? 'Update' : 'Add') + ' User'}}</h3>
+  <div class="col-lg-4"></div>
+  <form (ngSubmit)="onAddUser()" class="col-lg-4 col-md-4 col-sm-5">
+      <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input type="text" class="form-control" placeholder="Username" name="userName" [(ngModel)]="user.userName" />
+      </div>
+      <div class="form-group" *ngIf="!isUpdate">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="passowrd" name="password" [(ngModel)]="user.password" />
+      </div>
+      <div class="form-group">
+          <label>Role</label>
+          <input type="radio"  class="radio-inline" name="role" value="ROLE_ADMIN" [(ngModel)]="user.role" />Admin
+          <input type="radio" class="radio-inline" name="role" value="ROLE_USER" [(ngModel)]="user.role" />User
+      </div>
+      <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" placeholder="Full Name" name='fullName' [(ngModel)]="user.fullName" />
+      </div>
+      <div class="form-group">
+          <label>Country</label>
+          <input type="text" class="form-control" placeholder="Country" name='country' [(ngModel)]="user.country" />
+      </div>
+      <div class="form-group">
+          <input type="checkbox" class="checkbox-inline" name="enabled" [(ngModel)]="enabled" />Enable
+      </div>
+      <div class="form-group">
+          <input type="submit" class="btn btn-info" name="submit" value="{{isUpdate ? 'Update' : 'Add'}}" />
+      </div>
+      <div *ngIf="statusMessage">
+          <label>{{statusMessage}}</label>
+      </div>
+      <div *ngIf="statusMessage">
+          <a class="btn btn-success" [routerLink]="['/user']">Back</a>
+      </div>
+  </form>
+</div>
